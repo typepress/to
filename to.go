@@ -273,11 +273,9 @@ func TimeTZ(val interface{}) (r time.Time, flag FlagsTZ) {
 			if noNano && len(format) < l {
 				continue
 			}
-			if i > 10 { // without NumTZ
-				r, err = time.ParseInLocation(format, s, time.Local)
-			} else {
-				r, err = time.Parse(format, s)
-			}
+
+			r, err = time.ParseInLocation(format, s, time.Local)
+
 			if err == nil {
 				if i < 4 {
 					flag = NumAbbrTZ
